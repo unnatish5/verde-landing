@@ -58,6 +58,9 @@ EVIDENCE STRENGTH (judged on the claim's wording only)
 - Moderate: has most of these, but one or two key elements are missing.
 - Weak: vague or mostly unmeasurable (e.g., "eco-friendly", "greener").
 - Insufficient: too little to assess at all.
+Count the missing elements first: if three or more of target, baseline,
+scope, timeframe and independent verification are missing, the rating
+must be Weak or Insufficient, never Moderate.
 
 OUTPUT FORMAT (under 150 words, plain text, in this order)
 What the claim specifies: <one or two sentences>
@@ -190,10 +193,13 @@ module.exports = async function handler(req, res) {
     if (!raw) return res.status(502).json({ error: 'The AI returned no answer. Please try again.' });
 
     // Parse the fixed last line, then hide it from the visitor
-    const m = raw.match(/STRENGTH:\s*(Strong|Moderate|Weak|Insufficient|N\/A)/i);
-    const strengthRaw = m ? m[1] : 'N/A';
+    // Match only a line that STARTS with "STRENGTH:" (not "Evidence strength:"), and use the last one.
+    const tagged = [...raw.matchAll(/^\s*STRENGTH:\s*(Strong|Moderate|Weak|Insufficient|N\/A)\s*$/gim)];
+    const fallback = raw.match(/^\s*Evidence strength:\s*(Strong|Moderate|Weak|Insufficient)/im);
+    const strengthRaw = tagged.length ? tagged[tagged.length - 1][1] : fallback ? fallback[1] : 'N/A';
     const strength = strengthRaw.toUpperCase() === 'N/A' ? 'N/A' : strengthRaw[0].toUpperCase() + strengthRaw.slice(1).toLowerCase();
-    const answer = raw.replace(/\n?\s*STRENGTH:.*$/is, '').trim();
+    // Remove only the STRENGTH tag line(s); keep everything else
+    const answer = raw.replace(/^\s*STRENGTH:.*$/gim, '').trim();
 
     // ----- Supabase insert -----
     await sbInsert({
