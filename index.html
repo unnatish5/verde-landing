@@ -86,7 +86,7 @@ textarea::placeholder{color:#637167;opacity:1}
 <div id="sdc-stat" class="sdc-stat" hidden>
 <span id="sdc-gap" class="sdc-stat-num">0%</span>
 <p class="sdc-stat-label">of claims checked had a major evidence gap</p>
-<p class="sdc-stat-sub"><span id="sdc-total">0</span> claims checked so far. Most common type: <span id="sdc-top">none yet</span>.</p>
+<p class="sdc-stat-sub"><span id="sdc-total">0</span> <span id="sdc-total-word">claims</span> checked so far. Most common type: <span id="sdc-top">none yet</span>.</p>
 </div>
 </div>
 <form id="sdc-form" novalidate>
@@ -179,6 +179,7 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
     $('sdc-stat').hidden = false;
     $('sdc-gap').textContent = s.majorGapPct === null ? 'No data yet' : s.majorGapPct + '%';
     $('sdc-total').textContent = s.total;
+    $('sdc-total-word').textContent = s.total === 1 ? 'claim' : 'claims';
     $('sdc-top').textContent = s.topClaimType || 'none yet';
   }
 
