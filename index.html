@@ -25,6 +25,29 @@
 /* Verde brand symbol: shared geometry, no motion. */
 .wordmark{display:inline-flex;align-items:center}.brand-mark{display:block;flex-shrink:0;color:var(--green);margin-right:9px}.hero-visual{isolation:isolate;overflow:hidden}.hero-brand-mark{display:none;position:absolute;right:-24px;top:-30px;width:300px;height:300px;color:var(--green);opacity:.08;pointer-events:none;z-index:-1}
 @media(min-width:650px){.hero-brand-mark{display:block}}
+
+/* Say-Do Check: reuses the page's tokens, chips and demo panel. */
+select,textarea{font:inherit;width:100%;min-width:0;padding:14px 15px;border:1px solid #afbeae;background:#fff;border-radius:9px;color:var(--ink)}
+select:focus-visible,textarea:focus-visible{outline:3px solid #a85a15;outline-offset:5px}
+textarea{resize:vertical;min-height:112px;line-height:1.5}
+textarea::placeholder{color:#637167;opacity:1}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.sdc-grid{display:grid;gap:14px;margin-bottom:14px}
+.sdc-field{margin-bottom:14px}.sdc-grid .sdc-field{margin-bottom:0}
+.sdc-meta{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted);margin-top:8px}
+.sdc-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.sdc-left{font-size:13px;color:var(--muted)}
+.sdc-error{margin-top:16px;padding:12px 14px;border-radius:9px;background:#fff0d9;color:#79500e;font-size:13px}
+.sdc-result{margin-top:20px;background:#fff;border:1px solid #dde6d7;border-radius:16px;padding:22px}
+.sdc-result-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--ink)}
+.sdc-line{font-size:14px;margin-top:12px;color:var(--ink)}
+.sdc-line strong{display:block;font-size:12px;color:var(--green);letter-spacing:-.01em}
+.sdc-line.sdc-fine{font-size:12px;color:var(--muted)}
+.sdc-stat{margin-top:28px;padding-top:24px;border-top:1px solid #c9d7c4}
+.sdc-stat-num{display:block;font-size:clamp(42px,6vw,58px);font-weight:700;letter-spacing:-.05em;line-height:1;color:var(--green)}
+.sdc-stat-label{font-size:15px;margin-top:8px;color:var(--ink)}
+.sdc-stat-sub{font-size:12px;margin-top:6px}
+@media(min-width:650px){.sdc-grid{grid-template-columns:1fr 1fr}.demo.sdc{align-items:start}}
 </style>
 </head>
 <body>
@@ -32,7 +55,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><nav class="wrap nav-inner" aria-label="Main navigation">
 <a class="wordmark" href="#home" aria-label="Verde home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><use href="#verde-mark"/></svg>Verde</a><a class="btn" href="#early-access">Get early access <span aria-hidden="true">↗</span></a>
-<div class="links"><a href="#home">Home</a><a href="#problem">The problem</a><a href="#solution">The solution</a><a href="#features">What Verde does</a><a href="#preview">Product preview</a><a href="#diary">Diary</a><a href="#how-it-works">How it works</a><a href="#trust">Trust</a><a href="#roadmap">What’s next</a><a href="#early-access">Early access</a></div>
+<div class="links"><a href="#home">Home</a><a href="#problem">The problem</a><a href="#solution">The solution</a><a href="#features">What Verde does</a><a href="#preview">Product preview</a><a href="#diary">Diary</a><a href="#say-do-check">Say-Do Check</a><a href="#how-it-works">How it works</a><a href="#trust">Trust</a><a href="#roadmap">What’s next</a><a href="#early-access">Early access</a></div>
 </nav></header>
 <main id="main" class="wrap">
 <section id="home" class="hero" aria-labelledby="hero-title">
@@ -53,12 +76,43 @@
 <li class="score-row"><span>Supply chain <strong>— / 100</strong></span><span class="chip unknown">Insufficient data</span><p class="small" style="grid-column:1/-1">We don’t know.</p></li>
 <li class="score-row"><span>Transparency <strong>76 / 100</strong></span><span class="chip verified">Verified</span><div class="meter" aria-hidden="true"><span style="width:76%"></span></div></li></ul><div class="legend" aria-label="Evidence labels"><span class="chip verified">Verified</span><span class="chip reported">Company-reported</span><span class="chip estimated">Estimated</span><span class="chip unknown">Insufficient data</span></div></article></div></section>
 <section id="diary" class="section reveal" aria-labelledby="diary-title"><div class="demo"><div><div class="eyebrow">04 / In your own words</div><h2 id="diary-title">AI Sustainability Diary</h2><p class="note">Live demo coming soon.</p></div><form id="diary-form"><label for="diary-input">What did you do today?</label><div class="input-row"><input id="diary-input" type="text" maxlength="1000" placeholder="Took the bus 8 km instead of an Uber" required aria-describedby="diary-note"><button class="btn" type="submit">Estimate impact</button></div><p id="diary-note" class="note">Preview only. Your entry isn’t sent or saved.</p><p id="diary-status" class="status" role="status" aria-live="polite"></p></form></div></section>
-<section id="how-it-works" class="section reveal" aria-labelledby="how-title"><div class="eyebrow">05 / One everyday loop</div><h2 id="how-title" class="section-title">How it works</h2><p style="margin-bottom:30px">Discover → Decide → Track → Improve → Share.</p><ol class="steps"><li><span class="step-no" aria-hidden="true">01</span><div><h3>Discover</h3><p>Find out how sustainable a company is</p></div></li><li><span class="step-no" aria-hidden="true">02</span><div><h3>Decide</h3><p>Decide whether to buy</p></div></li><li><span class="step-no" aria-hidden="true">03</span><div><h3>Track</h3><p>Track the impact of your daily choices</p></div></li><li><span class="step-no" aria-hidden="true">04</span><div><h3>Improve</h3><p>Improve where it matters most for you</p></div></li><li><span class="step-no" aria-hidden="true">05</span><div><h3>Share</h3><p>Share what you’ve done without shame-based leaderboards</p></div></li></ol></section>
+
+<section id="say-do-check" class="section reveal" aria-labelledby="sdc-title"><div class="demo sdc">
+<div>
+<div class="eyebrow">05 / Try it live</div>
+<h2 id="sdc-title">Say-Do Check</h2>
+<p style="margin-top:14px;font-size:15px;max-width:380px">Paste a sustainability claim from a company’s website or report. Verde shows what the claim specifies, what’s missing, and what to look for next.</p>
+<p class="note">It reviews the wording of a claim, not the company. An estimate, not a certification.</p>
+<div id="sdc-stat" class="sdc-stat" hidden>
+<span id="sdc-gap" class="sdc-stat-num">0%</span>
+<p class="sdc-stat-label">of claims checked had a major evidence gap</p>
+<p class="sdc-stat-sub"><span id="sdc-total">0</span> claims checked so far. Most common type: <span id="sdc-top">none yet</span>.</p>
+</div>
+</div>
+<form id="sdc-form" novalidate>
+<div class="sdc-grid">
+<div class="sdc-field"><label for="sdc-type">Claim type</label><select id="sdc-type" required><option value="" disabled selected>Choose one</option><option>Emissions target</option><option>Recycled or sustainable materials</option><option>Packaging and waste</option><option>Water</option><option>Supply chain and labour</option><option>Other</option></select></div>
+<div class="sdc-field"><label for="sdc-company">Company (optional)</label><input id="sdc-company" type="text" maxlength="60" autocomplete="off" aria-describedby="sdc-company-note"></div>
+</div>
+<p id="sdc-company-note" class="note" style="margin:-6px 0 14px">Used only as a label. It is not stored and not used as a source of facts.</p>
+<div class="sdc-field"><label for="sdc-claim">The claim</label><textarea id="sdc-claim" maxlength="300" rows="4" placeholder="We will reduce our emissions by 50% by 2030." aria-describedby="sdc-claim-note"></textarea>
+<div class="sdc-meta"><span id="sdc-claim-note">Your claim is sent to an AI service and stored anonymously. Don’t enter personal information.</span><span id="sdc-count" aria-hidden="true">0 / 300</span></div></div>
+<div class="sdc-actions"><button id="sdc-submit" class="btn" type="submit">Check this claim</button><span id="sdc-left" class="sdc-left"></span></div>
+<div id="sdc-error" class="sdc-error" role="alert" hidden></div>
+<div id="sdc-result" class="sdc-result" aria-live="polite" hidden>
+<div class="sdc-result-head" id="sdc-result-head"><span>Evidence strength</span><span id="sdc-chip" class="chip unknown"></span></div>
+<div id="sdc-answer"></div>
+<p class="note">Based on the claim’s wording only. Not a certification or a judgment of the company.</p>
+</div>
+</form>
+</div></section>
+
+<section id="how-it-works" class="section reveal" aria-labelledby="how-title"><div class="eyebrow">06 / One everyday loop</div><h2 id="how-title" class="section-title">How it works</h2><p style="margin-bottom:30px">Discover → Decide → Track → Improve → Share.</p><ol class="steps"><li><span class="step-no" aria-hidden="true">01</span><div><h3>Discover</h3><p>Find out how sustainable a company is</p></div></li><li><span class="step-no" aria-hidden="true">02</span><div><h3>Decide</h3><p>Decide whether to buy</p></div></li><li><span class="step-no" aria-hidden="true">03</span><div><h3>Track</h3><p>Track the impact of your daily choices</p></div></li><li><span class="step-no" aria-hidden="true">04</span><div><h3>Improve</h3><p>Improve where it matters most for you</p></div></li><li><span class="step-no" aria-hidden="true">05</span><div><h3>Share</h3><p>Share what you’ve done without shame-based leaderboards</p></div></li></ol></section>
 <section id="trust" class="section reveal" aria-labelledby="trust-title"><div class="trust"><h2 id="trust-title" class="eyebrow">Why you can trust it</h2><blockquote>When the evidence isn’t strong enough, Verde says: ‘We don’t know.’ Trust matters more than false precision.</blockquote></div></section>
-<section id="roadmap" class="section reveal" aria-labelledby="roadmap-title"><div class="eyebrow">06 / Built one step at a time</div><h2 id="roadmap-title" class="section-title">What’s next</h2><p class="roadmap-intro">Product scanning, corporate commitment tracking, personalized coaching, ‘What If?’ simulations, accountability updates and private Circles. The goal is to connect the whole journey: company → product → purchase → behavior → impact → better next decision.</p><div class="roadmap"><article class="card"><span class="chip verified">Now</span><h3>A clearer starting point</h3><ul><li>Company Sustainability Passports</li><li>AI Sustainability Diary</li><li>Personal Impact Dashboard</li></ul></article><article class="card"><span class="chip reported">Next</span><h3>More context for each choice</h3><ul><li>Product scanning</li><li>Corporate commitment tracking</li><li>Personalized coaching</li></ul></article><article class="card"><span class="chip estimated">Later</span><h3>A journey you can share</h3><ul><li>‘What If?’ simulations</li><li>Accountability updates</li><li>Private Circles</li></ul></article></div></section>
+<section id="roadmap" class="section reveal" aria-labelledby="roadmap-title"><div class="eyebrow">07 / Built one step at a time</div><h2 id="roadmap-title" class="section-title">What’s next</h2><p class="roadmap-intro">Product scanning, corporate commitment tracking, personalized coaching, ‘What If?’ simulations, accountability updates and private Circles. The goal is to connect the whole journey: company → product → purchase → behavior → impact → better next decision.</p><div class="roadmap"><article class="card"><span class="chip verified">Now</span><h3>A clearer starting point</h3><ul><li>Company Sustainability Passports</li><li>AI Sustainability Diary</li><li>Personal Impact Dashboard</li></ul></article><article class="card"><span class="chip reported">Next</span><h3>More context for each choice</h3><ul><li>Product scanning</li><li>Corporate commitment tracking</li><li>Personalized coaching</li></ul></article><article class="card"><span class="chip estimated">Later</span><h3>A journey you can share</h3><ul><li>‘What If?’ simulations</li><li>Accountability updates</li><li>Private Circles</li></ul></article></div></section>
 <section id="early-access" class="section reveal" aria-labelledby="cta-title"><div class="signup"><div class="eyebrow" style="justify-content:center">Your perspective belongs here</div><h2 id="cta-title">What would you want Verde to help you understand about your own choices?</h2><p>Join early access and tell us what to build next.</p><form id="signup-form"><label for="signup-email">Email address</label><div class="input-row"><input id="signup-email" type="email" autocomplete="email" placeholder="you@example.com" required maxlength="254" aria-describedby="privacy-note"><button class="btn" type="submit">Get early access <span aria-hidden="true">↗</span></button></div><p id="privacy-note" class="note">Front-end preview only: your email isn’t sent, stored or shared.</p><p id="signup-status" class="status" role="status" aria-live="polite"></p></form></div></section>
 </main><footer class="footer"><div class="wrap footer-inner"><a class="wordmark" href="#home" aria-label="Verde home"><svg class="brand-mark" viewBox="0 0 48 48" width="28" height="28" aria-hidden="true" focusable="false"><use href="#verde-mark"/></svg>Verde</a><p class="tagline">Know your impact. Make your choice.</p><p>© <span id="year">2026</span> Verde. All rights reserved.</p></div></footer>
-<noscript><p class="wrap note" style="padding-bottom:20px">The diary and early-access forms are previews and require JavaScript to display their status. No information is submitted.</p></noscript>
+<noscript><p class="wrap note" style="padding-bottom:20px">The diary and early-access forms are previews and require JavaScript to display their status. No information is submitted. The Say-Do Check also requires JavaScript.</p></noscript>
 <script>
 // Replace this function with an AI integration later. Keep API credentials on
 // a server and return evidence/uncertainty alongside any future estimate.
@@ -96,6 +150,116 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
   document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
   document.documentElement.classList.add('motion');
 }
+</script>
+<script>
+// Verde Say-Do Check: talks to the Vercel function at /api/check.
+// No API keys live here; the function holds them as environment variables.
+(function () {
+  var API = '/api/check';
+  var $ = function (id) { return document.getElementById(id); };
+  var CHIP = { Strong: 'verified', Moderate: 'reported', Weak: 'estimated', Insufficient: 'unknown', 'N/A': 'unknown' };
+  var LABELS = /^(What the claim specifies|What.s missing|Look for in the company.s report):\s*(.*)$/i;
+
+  // Anonymous random id for the 5-check cap. Stored in this browser only.
+  var visitorId;
+  try {
+    visitorId = localStorage.getItem('verde_visitor_id');
+    if (!visitorId) {
+      visitorId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+      localStorage.setItem('verde_visitor_id', visitorId);
+    }
+  } catch (e) {
+    visitorId = String(Date.now()) + Math.random().toString(16).slice(2);
+  }
+
+  function showError(msg) { var b = $('sdc-error'); b.textContent = msg || ''; b.hidden = !msg; }
+
+  function showStats(s) {
+    if (!s) return;
+    $('sdc-stat').hidden = false;
+    $('sdc-gap').textContent = s.majorGapPct === null ? 'No data yet' : s.majorGapPct + '%';
+    $('sdc-total').textContent = s.total;
+    $('sdc-top').textContent = s.topClaimType || 'none yet';
+  }
+
+  function showLeft(n) {
+    $('sdc-left').textContent = n > 0 ? n + ' free check' + (n === 1 ? '' : 's') + ' left' : 'You’ve used your 5 free checks.';
+    $('sdc-submit').disabled = n <= 0;
+    $('sdc-submit').dataset.capped = n <= 0 ? '1' : '';
+  }
+
+  // Build the answer with textContent only: the model's text is never treated as HTML.
+  function renderAnswer(text) {
+    var box = $('sdc-answer');
+    box.replaceChildren();
+    text.split('\n').forEach(function (line) {
+      line = line.trim();
+      if (!line || /^evidence strength:/i.test(line)) return;
+      var p = document.createElement('p');
+      p.className = 'sdc-line';
+      var m = line.match(LABELS);
+      if (m) {
+        var s = document.createElement('strong');
+        s.textContent = m[1];
+        p.append(s, m[2]);
+      } else {
+        p.textContent = line;
+        if (/^this reviews/i.test(line)) p.className = 'sdc-line sdc-fine';
+      }
+      box.append(p);
+    });
+  }
+
+  $('sdc-claim').addEventListener('input', function () { $('sdc-count').textContent = this.value.length + ' / 300'; });
+
+  // On load: live number and this visitor's remaining checks
+  fetch(API + '?visitor_id=' + encodeURIComponent(visitorId))
+    .then(function (r) { return r.json(); })
+    .then(function (d) { showStats(d.stats); showLeft(d.remaining); })
+    .catch(function () {});
+
+  $('sdc-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var type = $('sdc-type').value;
+    var claim = $('sdc-claim').value.trim();
+    showError('');
+    if (!type) { showError('Choose a claim type.'); return; }
+    if (claim.length < 10) { showError('Paste a claim of at least 10 characters.'); return; }
+
+    var btn = $('sdc-submit');
+    btn.disabled = true;
+    btn.textContent = 'Checking…';
+    $('sdc-result').hidden = true;
+
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ visitor_id: visitorId, claim_type: type, company: $('sdc-company').value, claim: claim })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok) {
+          showError(res.d.error || 'Something went wrong. Please try again.');
+          if (typeof res.d.remaining === 'number') showLeft(res.d.remaining);
+          return;
+        }
+        var strength = res.d.strength;
+        var chip = $('sdc-chip');
+        chip.className = 'chip ' + (CHIP[strength] || 'unknown');
+        chip.textContent = strength;
+        $('sdc-result-head').hidden = strength === 'N/A';
+        renderAnswer(res.d.answer);
+        $('sdc-result').hidden = false;
+        showStats(res.d.stats);
+        showLeft(res.d.remaining);
+      })
+      .catch(function () { showError('Could not reach the server. Check your connection and try again.'); })
+      .finally(function () {
+        btn.textContent = 'Check this claim';
+        if (!btn.dataset.capped) btn.disabled = false;
+      });
+  });
+})();
 </script>
 </body>
 </html>
