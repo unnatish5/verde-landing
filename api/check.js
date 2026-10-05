@@ -5,7 +5,7 @@
 // Environment variables (set in Vercel > Settings > Environment Variables):
 //   GEMINI_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY
 
-const GEMINI_MODEL = 'gemini-2.5-flash-lite';
+const GEMINI_MODEL = 'gemini-3.5-flash-lite';
 const MAX_OUTPUT_TOKENS = 350;
 const PER_VISITOR_CAP = 5;
 const GLOBAL_DAILY_CAP = 300; // protects your Gemini quota if someone scripts the endpoint
@@ -174,8 +174,9 @@ module.exports = async function handler(req, res) {
           contents: [{ role: 'user', parts: [{ text: userMessage }] }],
           generationConfig: {
             maxOutputTokens: MAX_OUTPUT_TOKENS,
-            temperature: 0.3,
-            thinkingConfig: { thinkingBudget: 0 },
+            // Gemini 3.x: keep thinking minimal so the 350-token cap is spent on the answer.
+            // (Google recommends leaving temperature at its default on Gemini 3.x.)
+            thinkingConfig: { thinkingLevel: 'minimal' },
           },
         }),
       }
